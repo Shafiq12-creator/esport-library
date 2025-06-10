@@ -1,0 +1,1142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Muhamad Shafiq Izzuan Bin Mahadi | Cataloging Specialist</title>
+ <style>
+  /* Background fixed image */
+  .bg-image {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-image: url('https://i.postimg.cc/xjRTSBbH/file-000000009ddc61f9b8bf6fa13a075ccc.png');
+    background-size: cover;
+    background-position: center;
+    z-index: -1;
+    user-select: none;
+  }
+
+  /* Body and base styles */
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 20px;
+    background-color: #121212;
+    color: #d1d5db;
+    position: relative;
+    z-index: 0;
+  }
+
+  /* Header */
+  header {
+    background: rgba(31, 41, 55, 0.85);
+    color: #f97316;
+    padding: 30px 20px;
+    text-align: center;
+    border-bottom: 4px solid #f97316;
+    position: relative;
+    z-index: 1;
+  }
+
+  .profile-img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 5px solid #f97316;
+    object-fit: cover;
+    margin-bottom: 15px;
+  }
+
+  h1, h2 {
+    margin: 0 0 15px 0;
+    color: #f97316;
+  }
+
+  /* Navigation */
+  nav {
+    display: flex;
+    justify-content: center;
+    background: rgba(30, 41, 59, 0.85);
+    padding: 15px 0;
+    flex-wrap: wrap;
+    position: relative;
+    z-index: 1;
+  }
+
+  nav button {
+    margin: 8px 12px;
+    padding: 12px 22px;
+    border: none;
+    background: #1f2937;
+    color: #d1d5db;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 3px #f97316;
+  }
+
+  nav button:hover,
+  nav button.active {
+    background: #f97316;
+    color: #121821;
+    box-shadow: 0 0 15px #f97316;
+  }
+
+  /* Sections */
+  section {
+    display: none;
+    padding: 30px;
+    background: rgba(30, 41, 59, 0.85);
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    max-width: 900px;
+    margin: 30px auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  section.active {
+    display: block;
+  }
+
+  .card {
+    background: #273549;
+    padding: 25px;
+    border-left: 6px solid #f97316;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(249, 115, 22, 0.4);
+    color: #d1d5db;
+  }
+
+  /* About card with image */
+  #about .card {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+  }
+
+  #about .card p {
+    flex: 1;
+    margin: 0;
+  }
+
+  .about-image-frame {
+    max-width: 250px;
+    margin-bottom: 20px;
+    border: 4px solid #f97316;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 0 15px #f97316;
+  }
+
+  .about-image-frame img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+  }
+
+  /* Collection container */
+  #collection {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+    background: #1e1e1e;
+    border-radius: 12px;
+    box-shadow: 0 0 20px #00ff9977;
+  }
+
+  #collection h2 {
+    font-weight: 700;
+    font-size: 2.8rem;
+    color: #00ff99;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+    user-select: none;
+  }
+
+  #collection h2 i {
+    font-size: 2.8rem;
+    color: #00cc66;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% {
+      transform: scale(1);
+      color: #00cc66;
+    }
+    50% {
+      transform: scale(1.1);
+      color: #00ff99;
+    }
+  }
+
+  /* Search input */
+  #collectionSearch {
+    width: 100%;
+    padding: 10px 14px;
+    margin-bottom: 25px;
+    border-radius: 8px;
+    border: none;
+    font-size: 1.1rem;
+    outline: none;
+    box-shadow: 0 0 8px #00ff9977;
+    background: #262626;
+    color: #eee;
+  }
+
+  /* Collection grid and items */
+  .collection-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+  }
+
+  .collection-item {
+    background: #262626;
+    border-radius: 10px;
+    box-shadow: 0 0 12px #00ff9955;
+    cursor: pointer;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .collection-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 20px #00ff99cc;
+  }
+
+  .collection-item img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    border-bottom: 2px solid #00ff99;
+  }
+
+  .collection-item-details {
+    padding: 12px 15px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .collection-item-details h4 {
+    font-weight: 700;
+    font-size: 1.6rem;
+    margin: 0 0 6px 0;
+    color: #00ff99;
+    user-select: text;
+  }
+
+  .collection-item-details p {
+    font-size: 1.1rem;
+    color: #ccc;
+    margin: 0;
+    flex-grow: 1;
+    user-select: text;
+  }
+
+  /* Popup Overlay */
+  #popupOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(18, 24, 33, 0.95);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+
+  #popupContent {
+    background: #1f2937;
+    max-width: 700px;
+    width: 100%;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.8);
+    overflow: hidden;
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+  }
+
+  #popupContent img {
+    width: 40%;
+    object-fit: cover;
+    border-right: 4px solid #f97316;
+    border-radius: 15px 0 0 15px;
+  }
+
+  #popupDetails {
+    padding: 25px;
+    width: 60%;
+    box-sizing: border-box;
+    color: #d1d5db;
+  }
+
+  #popupDetails h3 {
+    margin-top: 0;
+    color: #f97316;
+    font-size: 24px;
+    margin-bottom: 15px;
+  }
+
+  #popupDetails p {
+    margin: 8px 0;
+    font-size: 16px;
+    line-height: 1.4;
+  }
+
+  #popupCloseBtn {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 30px;
+    color: #f97316;
+    cursor: pointer;
+    font-weight: bold;
+    user-select: none;
+    z-index: 1100;
+  }
+
+  /* Chatbot */
+  #chatbot {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 300px;
+    font-family: Arial, sans-serif;
+    box-shadow: 0 0 10px #f97316;
+    border-radius: 10px;
+    overflow: hidden;
+    background: #1f2937;
+    color: #d1d5db;
+    z-index: 10000;
+  }
+
+  #chatbot-header {
+    background: #f97316;
+    padding: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  #chatbot-body {
+    padding: 10px;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  #chatbot-messages {
+    flex: 1;
+    overflow-y: auto;
+    margin-bottom: 10px;
+  }
+
+  .chat-message {
+    margin: 6px 0;
+    padding: 8px 12px;
+    border-radius: 15px;
+    max-width: 80%;
+    word-wrap: break-word;
+  }
+
+  .user-message {
+    background: #f97316;
+    color: #121821;
+    align-self: flex-end;
+  }
+
+  .bot-message {
+    background: #334155;
+    color: #d1d5db;
+    align-self: flex-start;
+  }
+
+  #chatbot-input {
+    padding: 8px 10px;
+    border-radius: 15px;
+    border: none;
+    outline: none;
+    font-size: 14px;
+  }
+</style>
+
+</head>
+<body>
+
+<div class="bg-image"></div>
+
+<header style="
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #000000, #111111);
+  padding: 40px 20px;
+  text-align: center;
+  border-bottom: 3px solid #FFA500;
+  box-shadow: 0 4px 20px rgba(255, 165, 0, 0.4);
+">
+  <img src="https://i.postimg.cc/mDW0mvGv/file-00000000371c622fa0d0dcdbbad10512-1.png" 
+       alt="Muhamad Shafiq Izzuan Bin Mahadi" 
+       style="
+         width: 130px;
+         height: 130px;
+         border-radius: 50%;
+         border: 3px solid #FFA500;
+         box-shadow: 0 0 15px #FFA500;
+         margin-bottom: 20px;
+       " />
+  <h1 style="
+    font-size: 2.8rem;
+    color: #FFA500;
+    margin: 10px 0;
+    letter-spacing: 3px;
+    text-shadow: 0 0 10px #FFA500, 0 0 5px #FF8C00;
+  ">NEXUS ESPORT LIBRARY</h1>
+  <p style="
+    font-size: 1.6rem;
+    font-weight: bold;
+    color: #FFA500;
+    margin: 0;
+    text-shadow:
+      0 0 5px #FFA500,
+      0 0 10px #FFA500,
+      0 0 15px #FF8C00,
+      0 0 20px #FF8C00;
+  ">Fuel Your Games, Sharpen Your Mind</p>
+</header>
+
+
+<nav>
+  <button class="active" onclick="showSection('home', this)">Home</button>
+  <button onclick="showSection('about', this)">About Me</button>
+  <button onclick="showSection('services', this)">Services</button>
+  <button onclick="showSection('collection', this)">Collection</button>
+  <button onclick="showSection('contact', this)">Contact</button>
+</nav>
+
+<section id="home" class="active">
+  <div class="card" style="background: linear-gradient(135deg, #1a1a2e, #16213e); padding: 30px; color: #fff; border-radius: 12px; box-shadow: 0 0 15px rgba(0,0,0,0.5);">
+    
+    <h2 style="font-size: 2.2em; margin-bottom: 15px; color: #FFA500; text-shadow: 0 0 10px #FFA500;">
+      🎮✨ Welcome to Nexus eSport Library
+    </h2>
+
+    <h3 style="font-size: 1.5em; margin-bottom: 20px; font-weight: bold; color: #ff8c00; text-shadow: 0 0 8px #ff8c00;">
+      🔥 Fuel Your Games, Sharpen Your Mind
+    </h3>
+
+    <p style="font-size: 1.1em; line-height: 1.8;">
+      Hello and welcome to my official site — <strong>Nexus eSport Library</strong>!
+      <br><br>
+      This platform is dedicated to promoting <strong>e-sports culture</strong> while providing structured access to famous competitive games and organized gaming knowledge.
+      <br><br>
+      🧠 I specialize in <strong>cataloging</strong>, <strong>organizing</strong>, and <strong>managing</strong> e-sport and game-related resources — making information easy to find, understand, and enjoy.
+      <br><br>
+      🎯 Here, you’ll discover <strong>curated content</strong> related to the most iconic and competitive games which is the choice of many people. You can check the games in my <strong>collection</strong>.
+      <br><br>
+      📚 Whether you're a <strong>player</strong>, <strong>researcher</strong>, or curious <strong>fan</strong>, this library connects you with structured insights, game collections, and digital archives for a better gaming and learning experience.
+      <br><br>
+      📢 Stay tuned for <strong>updates</strong>, <strong>featured games</strong>, and <strong>unique collections</strong> — all tailored to power your passion for play and learning!
+      <br><br>
+      👉 <em>Dive into the Collection, explore my Services, or reach out through Contact.</em> <br>
+      Together, let’s turn <strong>gameplay into knowledge</strong>!
+    </p>
+  </div>
+</section>
+
+<section id="about">
+  <div class="card" style="display: flex; flex-wrap: wrap; align-items: center; background: linear-gradient(135deg, #1a1a2e, #16213e); color: white; border-radius: 12px; padding: 30px; gap: 30px; box-shadow: 0 0 15px rgba(0,0,0,0.5);">
+    
+    <div style="flex: 1; text-align: center;">
+      <img src="https://i.postimg.cc/nz6tH5y2/capik-profile-jpg.jpg" alt="Muhamad Shafiq Izzuan Bin Mahadi" style="width: 240px; height: auto; border: 4px solid #FFA500; box-shadow: 0 0 15px #FFA500;">
+    </div>
+
+    <div style="flex: 2;">
+      <h2 style="font-size: 2em; margin-bottom: 15px; color: #FFA500;">👾 About Me</h2>
+      <p style="font-size: 1.1em; line-height: 1.8;">
+        💬 <strong>Name:</strong> Muhamad Shafiq Izzuan Bin Mahadi<br><br>
+
+        🎓 I hold a Bachelor of Information Science (Hons.) in Information Management from Universiti Teknologi MARA (UiTM).<br><br>
+
+        🧠 I am passionate about transforming digital gaming content into well-organized, meaningful knowledge that can benefit players, fans, and researchers alike. My mission is to bridge the gap between e-sports culture and the world of information science, where data becomes not just stored — but understood, explored, and shared effectively.
+        <br><br><strong>🧩 I specialize in:</strong><br><br>
+
+        🗂 Digital knowledge organization: Classifying and structuring game-related content for easy access and long-term value<br>
+        🗃 Archiving gaming-related data: Ensuring important gaming information, events, and trends are preserved digitally<br>
+        🌐 Web-based content presentation: Designing engaging, interactive, and informative platforms for e-sport resources<br>
+        🧭 User-centered classification systems: Developing systems that help users explore information according to needs and interests
+        <br><br><strong>🎮 What drives me?</strong><br><br>
+
+        I believe that gaming is more than entertainment — it’s a dynamic digital culture that deserves to be documented, organized, and celebrated. My work reflects a blend of technical skills, creative insight, and a forward-thinking mindset that treats games as powerful cultural and informational assets.
+        <br><br>
+        Through this platform, I aim to:<br>
+        ✅ Promote e-sports as a recognized knowledge domain<br>
+        ✅Create a central hub for digital gaming collections<br>
+        ✅ Support educational and recreational use of game content<br>
+        ✅ Encourage digital literacy through gaming
+      </p>
+    </div>
+    
+  </div>
+</section>
+
+<section id="services">
+  <div class="card" style="background: linear-gradient(135deg, #1a1a2e, #16213e); color: white; border-radius: 12px; padding: 30px; box-shadow: 0 0 15px rgba(0,0,0,0.5);">
+    <h2 style="font-size: 2em; margin-bottom: 20px;">🎮 My Services</h2>
+    
+    <ul style="list-style: none; padding-left: 0; font-size: 1.1em; line-height: 1.8;">
+      <li>
+        <strong>📦 Game Collection Management</strong><br>
+        Organizing and managing a wide range of video game collections — both digital and physical — categorized by genre, platform, release year, and popularity.
+      </li><br>
+
+      <li>
+        <strong>🗂 Game Cataloging & Metadata Creation</strong><br>
+        Providing detailed catalog records for each game, including metadata such as developer, publisher, release version, game modes, age ratings, and system compatibility.
+      </li><br>
+
+      <li>
+        <strong>🕹 Digital Game Library Development</strong><br>
+        Designing and maintaining a dedicated digital game library with advanced search, filtering, and user access features tailored for gamers and researchers.
+      </li><br>
+
+      <li>
+        <strong>📊 Game Usage Tracking & Analytics</strong><br>
+        Monitoring game usage statistics to enhance collection value, highlight popular titles, and support research in gaming trends and esports development.
+      </li><br>
+
+      <li>
+        <strong>🎓 Workshops on Game Literacy & Information Skills</strong><br>
+        Conducting workshops to promote understanding of game content, cultural impact, and the educational potential of video games.
+      </li><br>
+
+      <li>
+        <strong>🌐 E-sport Game Archiving</strong><br>
+        Building a historical archive of esports games, documenting tournaments, legendary players, and milestone events in competitive gaming.
+      </li>
+    </ul>
+  </div>
+</section>
+
+ <section id="collection">
+    <h2><i class="fas fa-gamepad"></i> 🎮 Collection</h2>
+    <input
+      type="text"
+      id="collectionSearch"
+      placeholder="Search collections..."
+      onkeyup="filterCollection()"
+    />
+    <div class="collection-grid" id="collectionGrid">
+
+      <div
+        class="collection-item"
+        onclick="showPopup(this)"
+        data-title="ChronoGardens"
+        data-description="Manage a mystical garden where time flows differently in each section, affecting plant growth and magical creatures."
+        data-image="https://i.postimg.cc/XJDBwKCz/file-000000001be86230bd5ff272738ffd0b.png"
+        data-author="GameDev Studios"
+        data-published="2025"
+        data-type="Game"
+      >
+        <img src="https://i.postimg.cc/XJDBwKCz/file-000000001be86230bd5ff272738ffd0b.png" alt="ChronoGardens" />
+        <div class="collection-item-details">
+          <h4>ChronoGardens</h4>
+          <p>
+            Manage a mystical garden where time flows differently in each
+            section, affecting plant growth and magical creatures.
+          </p>
+        </div>
+      </div>
+
+      <div
+        class="collection-item"
+        onclick="showPopup(this)"
+        data-title="EchoForge"
+        data-description="A cooperative multiplayer game where players craft weapons by capturing and manipulating sound waves."
+        data-image="https://i.postimg.cc/RZTnGJJ4/file-000000006de461f79d23db9a755c3384.png"
+        data-author="Echo Interactive"
+        data-published="2025"
+        data-type="Game"
+      >
+        <img src="https://i.postimg.cc/RZTnGJJ4/file-000000006de461f79d23db9a755c3384.png" alt="EchoForge" />
+        <div class="collection-item-details">
+          <h4>EchoForge</h4>
+          <p>
+            A cooperative multiplayer game where players craft weapons by
+            capturing and manipulating sound waves.
+          </p>
+        </div>
+      </div>
+
+      <div
+        class="collection-item"
+        onclick="showPopup(this)"
+        data-title="Nebula Nomads"
+        data-description="Explore procedurally generated star systems as a nomadic trader balancing resources, politics, and exploration."
+        data-image="https://i.postimg.cc/XYk6JdpM/file-00000000dc7c61f5bb1c730a9f580d98.png"
+        data-author="Nebula Labs"
+        data-published="2025"
+        data-type="Game"
+      >
+        <img src="https://i.postimg.cc/XYk6JdpM/file-00000000dc7c61f5bb1c730a9f580d98.png" alt="Nebula Nomads" />
+        <div class="collection-item-details">
+          <h4>Nebula Nomads</h4>
+          <p>
+            Explore procedurally generated star systems as a nomadic trader
+            balancing resources, politics, and exploration.
+          </p>
+        </div>
+      </div>
+
+      <div
+        class="collection-item"
+        onclick="showPopup(this)"
+        data-title="PixelPhantoms"
+        data-description="A pixel-art stealth platformer where players control ghosts haunting a cyberpunk city."
+        data-image="https://i.postimg.cc/mZcYsGrM/file-00000000267061f7880706b6932f6b2b-2.png"
+        data-author="Phantom Pixels"
+        data-published="2024"
+        data-type="Game"
+      >
+        <img src="https://i.postimg.cc/mZcYsGrM/file-00000000267061f7880706b6932f6b2b-2.png" alt="PixelPhantoms" />
+        <div class="collection-item-details">
+          <h4>PixelPhantoms</h4>
+          <p>
+            A pixel-art stealth platformer where players control ghosts haunting
+            a cyberpunk city.
+          </p>
+        </div>
+      </div>
+
+      <div
+        class="collection-item"
+        onclick="showPopup(this)"
+        data-title="Starline Rally"
+        data-description="Fast-paced space racing game featuring customizable hover vehicles and dangerous asteroid belts."
+        data-image="https://i.postimg.cc/sgGJyQ4p/file-00000000e7b0623089795aa528a02b0e.png"
+        data-author="Starline Studios"
+        data-published="2024"
+        data-type="Game"
+      >
+        <img src="https://i.postimg.cc/sgGJyQ4p/file-00000000e7b0623089795aa528a02b0e.png" alt="Starline Rally" />
+        <div class="collection-item-details">
+          <h4>Starline Rally</h4>
+          <p>
+            Fast-paced space racing game featuring customizable hover vehicles
+            and dangerous asteroid belts.
+          </p>
+        </div>
+      </div>
+
+      <div
+        class="collection-item"
+        onclick="showPopup(this)"
+        data-title="Quantum Quilters"
+        data-description="Puzzle game where players weave quantum threads to fix timeline paradoxes."
+        data-image="https://i.postimg.cc/MGPDB2Z0/file-00000000795061f8ab582b98c590e3d4-2.png"
+        data-author="Quantum Games"
+        data-published="2025"
+        data-type="Game"
+      >
+        <img src="https://i.postimg.cc/MGPDB2Z0/file-00000000795061f8ab582b98c590e3d4-2.png" alt="Quantum Quilters" />
+        <div class="collection-item-details">
+          <h4>Quantum Quilters</h4>
+          <p>
+            Puzzle game where players weave quantum threads to fix timeline
+            paradoxes.
+          </p>
+        </div>
+      </div>
+
+      <div
+        class="collection-item"
+        onclick="showPopup(this)"
+        data-title="Mythic Meadows"
+        data-description="Relaxing farming simulator in a magical world full of mythical creatures."
+        data-image="https://i.postimg.cc/x86CZWyT/file-000000002c3461f8aa9e2e74b9957a29.png"
+        data-author="Mythic Softworks"
+        data-published="2023"
+        data-type="Game"
+      >
+        <img src="https://i.postimg.cc/x86CZWyT/file-000000002c3461f8aa9e2e74b9957a29.png" alt="Mythic Meadows" />
+        <div class="collection-item-details">
+          <h4>Mythic Meadows</h4>
+          <p>
+            Relaxing farming simulator in a magical world full of mythical
+            creatures.
+          </p>
+        </div>
+      </div>
+
+      <div
+        class="collection-item"
+        onclick="showPopup(this)"
+        data-title="CyberSweep"
+        data-description="A cyberpunk-themed puzzle shooter combining hacking and combat."
+        data-image="https://i.postimg.cc/wB5N6xhw/file-00000000262461f888fbfeefcd0fca36.png"
+        data-author="CyberWorks"
+        data-published="2024"
+        data-type="Game"
+      >
+        <img src="https://i.postimg.cc/wB5N6xhw/file-00000000262461f888fbfeefcd0fca36.png" alt="CyberSweep" />
+        <div class="collection-item-details">
+          <h4>CyberSweep</h4>
+          <p>
+            A cyberpunk-themed puzzle shooter combining hacking and combat.
+          </p>
+        </div>
+      </div>
+
+      <div
+        class="collection-item"
+        onclick="showPopup(this)"
+        data-title="Void Voyage"
+        data-description="An open-world space exploration game with survival elements."
+        data-image="https://i.postimg.cc/dQTjXC3Y/file-00000000d5f061f8be0fabd65694c11d.png"
+        data-author="Void Interactive"
+        data-published="2025"
+        data-type="Game"
+      >
+        <img src="https://i.postimg.cc/dQTjXC3Y/file-00000000d5f061f8be0fabd65694c11d.png" />
+        <div class="collection-item-details">
+          <h4>Void Voyage</h4>
+          <p>
+            An open-world space exploration game with survival elements.
+          </p>
+        </div>
+      </div>
+
+      <div
+        class="collection-item"
+        onclick="showPopup(this)"
+        data-title="Dream Dwellers"
+        data-description="A narrative-driven adventure game exploring lucid dreams and subconscious mysteries."
+        data-image="https://i.postimg.cc/MTp80rMb/file-00000000b788622f9bee909f3106e58f.png"
+        data-author="DreamScape"
+        data-published="2023"
+        data-type="Game"
+      >
+        <img src="https://i.postimg.cc/MTp80rMb/file-00000000b788622f9bee909f3106e58f.png" alt="Dream Dwellers" />
+        <div class="collection-item-details">
+          <h4>Dream Dwellers</h4>
+          <p>
+            A narrative-driven adventure game exploring lucid dreams and
+            subconscious mysteries.
+          </p>
+        </div>
+      </div>
+
+      <div
+        class="collection-item"
+        onclick="showPopup(this)"
+        data-title="Glitch Guardians"
+        data-description="Defend the digital realm from viruses in this fast-paced tower defense game."
+        data-image="https://i.postimg.cc/44KmKtnM/file-00000000d9cc622fa3f13ad41db2fec2.png"
+        data-author="Glitch Games"
+        data-published="2024"
+        data-type="Game"
+      >
+        <img src="https://i.postimg.cc/44KmKtnM/file-00000000d9cc622fa3f13ad41db2fec2.png" alt="Glitch Guardians" />
+        <div class="collection-item-details">
+          <h4>Glitch Guardians</h4>
+          <p>
+            Defend the digital realm from viruses in this fast-paced tower
+            defense game.
+          </p>
+        </div>
+      </div>
+
+      <div
+        class="collection-item"
+        onclick="showPopup(this)"
+        data-title="Solar Sails"
+        data-description="Sail across the solar system in this strategy game mixing trading and combat."
+        data-image="https://i.postimg.cc/fTVL38h4/file-000000001d74622fb18af415c6486194.png"
+        data-author="Solar Studio"
+        data-published="2023"
+        data-type="Game"
+      >
+        <img src="https://i.postimg.cc/fTVL38h4/file-000000001d74622fb18af415c6486194.png" alt="Solar Sails" />
+        <div class="collection-item-details">
+          <h4>Solar Sails</h4>
+          <p>
+            Sail across the solar system in this strategy game mixing trading
+            and combat.
+          </p>
+        </div>
+      </div>
+
+      <div
+        class="collection-item"
+        onclick="showPopup(this)"
+        data-title="Lunar Legends"
+        data-description="Turn-based tactical RPG set on a moon colony with unique alien species."
+        data-image="https://i.postimg.cc/y6rMYZCx/file-000000007f40622fa9fbf67b568e7e5c.png"
+        data-author="Lunar Studios"
+        data-published="2024"
+        data-type="Game"
+      >
+        <img src="https://i.postimg.cc/y6rMYZCx/file-000000007f40622fa9fbf67b568e7e5c.png" alt="Lunar Legends" />
+        <div class="collection-item-details">
+          <h4>Lunar Legends</h4>
+          <p>
+            Turn-based tactical RPG set on a moon colony with unique alien
+            species.
+          </p>
+        </div>
+      </div>
+
+      <div
+        class="collection-item"
+        onclick="showPopup(this)"
+        data-title="Circuit Breakers"
+        data-description="High-speed racing game featuring futuristic vehicles and electrifying tracks."
+        data-image="https://i.postimg.cc/9MXHMDtf/file-00000000ab4461f9a2adbd915f5a2aaf.png"
+        data-author="Circuit Games"
+        data-published="2024"
+        data-type="Game"
+      >
+        <img src="https://i.postimg.cc/9MXHMDtf/file-00000000ab4461f9a2adbd915f5a2aaf.png" alt="Circuit Breakers" />
+        <div class="collection-item-details">
+          <h4>Circuit Breakers</h4>
+          <p>
+            High-speed racing game featuring futuristic vehicles and
+            electrifying tracks.
+          </p>
+        </div>
+      </div>
+
+      <div
+        class="collection-item"
+        onclick="showPopup(this)"
+        data-title="BioSynth"
+        data-description="A biotech-themed puzzle game focusing on gene editing and cellular mechanics."
+        data-image="https://i.postimg.cc/Hs7Pyj13/file-00000000660861f7b1ddb360153be5c1.png"
+        data-author="BioLabs"
+        data-published="2023"
+        data-type="Game"
+      >
+        <img src="https://i.postimg.cc/Hs7Pyj13/file-00000000660861f7b1ddb360153be5c1.png" alt="BioSynth" />
+        <div class="collection-item-details">
+          <h4>BioSynth</h4>
+          <p>
+            A biotech-themed puzzle game focusing on gene editing and cellular
+            mechanics.
+          </p>
+        </div>
+      </div>
+
+      <div
+        class="collection-item"
+        onclick="showPopup(this)"
+        data-title="Neon Nexus"
+        data-description="A fast-paced cyberpunk action game with parkour and hacking elements."
+        data-image="https://i.postimg.cc/Gm3WrjVV/file-00000000e10861f79c316ed3437ebda7.png"
+        data-author="Neon Games"
+        data-published="2025"
+        data-type="Game"
+      >
+        <img src="https://i.postimg.cc/Gm3WrjVV/file-00000000e10861f79c316ed3437ebda7.png" alt="Neon Nexus" />
+        <div class="collection-item-details">
+          <h4>Neon Nexus</h4>
+          <p>
+            A fast-paced cyberpunk action game with parkour and hacking
+            elements.
+          </p>
+        </div>
+      </div>
+
+      <div
+        class="collection-item"
+        onclick="showPopup(this)"
+        data-title="Frostfall Frontier"
+        data-description="Survive harsh frozen wilderness while building your settlement."
+        data-image="https://i.postimg.cc/Pfb8B7JQ/file-000000007f5061f78e9be21a2529a50c.png"
+        data-author="Frost Games"
+        data-published="2024"
+        data-type="Game"
+      >
+        <img src="https://i.postimg.cc/Pfb8B7JQ/file-000000007f5061f78e9be21a2529a50c.png" alt="Frostfall Frontier" />
+        <div class="collection-item-details">
+          <h4>Frostfall Frontier</h4>
+          <p>
+            Survive harsh frozen wilderness while building your settlement.
+          </p>
+        </div>
+      </div>
+
+      <div
+        class="collection-item"
+        onclick="showPopup(this)"
+        data-title="Shadow Circuit"
+        data-description="Hack and infiltrate a corporate network in this cyber-espionage game."
+        data-image="https://i.postimg.cc/0yXBTwsG/file-000000003dac61f7a29471a8593e337e.png"
+        data-author="ShadowSoft"
+        data-published="2023"
+        data-type="Game"
+      >
+        <img src="https://i.postimg.cc/0yXBTwsG/file-000000003dac61f7a29471a8593e337e.png" alt="Shadow Circuit" />
+        <div class="collection-item-details">
+          <h4>Shadow Circuit</h4>
+          <p>
+            Hack and infiltrate a corporate network in this cyber-espionage
+            game.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <script>
+    function filterCollection() {
+      const input = document.getElementById('collectionSearch');
+      const filter = input.value.toLowerCase();
+      const grid = document.getElementById('collectionGrid');
+      const items = grid.getElementsByClassName('collection-item');
+
+      for (let i = 0; i < items.length; i++) {
+        const title = items[i].getAttribute('data-title').toLowerCase();
+        const description = items[i].getAttribute('data-description').toLowerCase();
+
+        if (title.includes(filter) || description.includes(filter)) {
+          items[i].style.display = '';
+        } else {
+          items[i].style.display = 'none';
+        }
+      }
+    }
+
+    function showPopup(element) {
+      const title = element.getAttribute('data-title');
+      const description = element.getAttribute('data-description');
+      const image = element.getAttribute('data-image');
+      const author = element.getAttribute('data-author');
+      const published = element.getAttribute('data-published');
+      const type = element.getAttribute('data-type');
+
+      const popupHtml = `
+        <div style="
+          position: fixed;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          background: #222;
+          color: #0f0;
+          border-radius: 14px;
+          box-shadow: 0 0 25px #00ff99;
+          padding: 20px;
+          max-width: 400px;
+          z-index: 9999;
+          font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        ">
+          <button onclick="closePopup()" style="
+            background: transparent;
+            border: none;
+            color: #0f0;
+            font-size: 1.8rem;
+            float: right;
+            cursor: pointer;
+          ">&times;</button>
+          <img src="${image}" alt="${title}" style="width: 100%; border-radius: 10px; margin-bottom: 15px;" />
+          <h3 style="margin: 0 0 10px 0;">${title}</h3>
+          <p style="font-size: 1rem; line-height: 1.4; color: #aaffaa;">${description}</p>
+          <p style="margin-top: 10px; font-size: 0.9rem; color: #0f0;">
+            <strong>Author:</strong> ${author}<br />
+            <strong>Published:</strong> ${published}<br />
+            <strong>Type:</strong> ${type}
+          </p>
+        </div>
+        <div id="popupOverlay" onclick="closePopup()" style="
+          position: fixed;
+          top: 0; left: 0;
+          width: 100%; height: 100%;
+          background: rgba(0,255,153,0.2);
+          z-index: 9998;
+          cursor: pointer;
+        "></div>
+      `;
+
+      const existingPopup = document.getElementById('popupContainer');
+      if (existingPopup) {
+        existingPopup.remove();
+      }
+
+      const container = document.createElement('div');
+      container.id = 'popupContainer';
+      container.innerHTML = popupHtml;
+      document.body.appendChild(container);
+    }
+
+    function closePopup() {
+      const popup = document.getElementById('popupContainer');
+      if (popup) {
+        popup.remove();
+      }
+    }
+  </script>
+
+<section id="contact">
+
+  <div class="card" style="margin-bottom: 30px; padding: 25px; font-size: 1.1em;">
+    <h2 style="font-size: 1.8em; margin-bottom: 15px;">📇 Contact Information</h2>
+    <p style="font-size: 1.4em; font-weight: bold;">
+      👤 Muhamas Shafiq Izzuan Bin Mahadi
+    </p>
+    <p><strong>📧 Email:</strong> <a href="mailto:shafiqizzuan12@gmail.com">shafiqizzuan12@gmail.com</a></p>
+    <p><strong>📞 Phone:</strong> <a href="tel:0123456789">012-3456789</a></p>
+    <p><strong>📍 Address:</strong> Kampung Tok Deh Barat,17200 Rantau Panjang, Kelantan</p>
+  </div>
+
+  <div class="card" style="background: linear-gradient(135deg, #1e1e2f, #2a2a3d); padding: 30px; color: white; border-radius: 12px;">
+    <h2 style="font-size: 1.8em; margin-bottom: 20px;">📝 User Feedback</h2>
+    <form action="#" method="post">
+      <label for="name">👤 Name:</label><br>
+      <input type="text" id="name" name="name" required><br><br>
+
+      <label for="email">📍 Email:</label><br>
+      <input type="text" id="address" name="address"><br><br>
+
+      <label for="feedback">💬 Feedback:</label><br>
+      <textarea id="feedback" name="feedback" rows="5" required></textarea><br><br>
+
+      <button type="submit" style="background-color: #00aaff; color: white; padding: 10px 20px; border: none; border-radius: 8px; font-size: 1em; cursor: pointer;">
+        🚀 Submit
+      </button>
+    </form>
+  </div>
+</section>
+
+<!-- Popup for collection details -->
+<div id="popupOverlay" onclick="closePopup(event)">
+  <div id="popupContent" onclick="event.stopPropagation()">
+    <span id="popupCloseBtn" onclick="closePopup(event)">&times;</span>
+    <img id="popupImage" src="" alt="Collection Image" />
+    <div id="popupDetails">
+      <h3 id="popupTitle"></h3>
+      <p id="popupDescription"></p>
+      <p><strong>Author:</strong> <span id="popupAuthor"></span></p>
+      <p><strong>Published:</strong> <span id="popupPublished"></span></p>
+      <p><strong>Type:</strong> <span id="popupType"></span></p>
+    </div>
+  </div>
+</div>
+
+<div id="chatbot">
+  <div id="chatbot-header" onclick="toggleChatbot()">Chat with me</div>
+  <div id="chatbot-body" style="display:none;">
+    <div id="chatbot-messages"></div>
+    <input type="text" id="chatbot-input" placeholder="Type your message..." onkeypress="handleChatInput(event)" />
+  </div>
+</div>
+
+<script>
+
+  function showSection(sectionId, btn) {
+    document.querySelectorAll('nav button').forEach(button => button.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('section').forEach(sec => sec.classList.remove('active'));
+    document.getElementById(sectionId).classList.add('active');
+  }
+
+  function showPopup(el) {
+    document.getElementById('popupImage').src = el.dataset.image;
+    document.getElementById('popupTitle').textContent = el.dataset.title;
+    document.getElementById('popupDescription').textContent = el.dataset.description;
+    document.getElementById('popupAuthor').textContent = el.dataset.author;
+    document.getElementById('popupPublished').textContent = el.dataset.published;
+    document.getElementById('popupType').textContent = el.dataset.type;
+    document.getElementById('popupOverlay').style.display = 'flex';
+  }
+  function closePopup(e) {
+    if (e.target.id === 'popupOverlay' || e.target.id === 'popupCloseBtn') {
+      document.getElementById('popupOverlay').style.display = 'none';
+    }
+  }
+
+  function filterCollection() {
+    const input = document.getElementById('collectionSearch').value.toLowerCase();
+    const items = document.querySelectorAll('.collection-item');
+    items.forEach(item => {
+      const title = item.dataset.title.toLowerCase();
+      const desc = item.dataset.description.toLowerCase();
+      if(title.includes(input) || desc.includes(input)) {
+        item.style.display = 'flex';
+      } else {
+        item.style.display = 'none';
+      }
+    });
+  }
+
+  const chatbotHeader = document.getElementById('chatbot-header');
+  const chatbotBody = document.getElementById('chatbot-body');
+  const chatbotMessages = document.getElementById('chatbot-messages');
+  const chatbotInput = document.getElementById('chatbot-input');
+
+  function toggleChatbot() {
+    if(chatbotBody.style.display === 'none') {
+      chatbotBody.style.display = 'flex';
+      chatbotInput.focus();
+    } else {
+      chatbotBody.style.display = 'none';
+    }
+  }
+
+  function addMessage(text, sender) {
+    const messageDiv = document.createElement('div');
+    messageDiv.classList.add('chat-message');
+    messageDiv.classList.add(sender === 'user' ? 'user-message' : 'bot-message');
+    messageDiv.textContent = text;
+    chatbotMessages.appendChild(messageDiv);
+    chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+  }
+
+  function botResponse(input) {
+    input = input.toLowerCase();
+    if(input.includes('hello') || input.includes('hi')) {
+      return 'Hello! My name is Nova. How can I assist you today?';
+    }
+    if(input.includes('game') || input.includes('collection')) {
+      return 'You can browse my collection section to find various e-sport games that are the lastest, most interesthing and popular among gamers these days';
+    }
+    if(input.includes('contact')) {
+      return ' If you got some question, dont shy to contact me at shafiqizzuan12@gmail.com or call 012-3456789.';
+    }
+    if(input.includes('services')) {
+      return 'I offer various of services such as game collection management cataloging, game cataloging & metadata creation, digital game library development, game usage tracking & analytics and more. You can my service section to know more about service I provided.';
+    }
+    return "Sorry, I didn't understand that. Can you please rephrase?";
+  }
+
+  function handleChatInput(event) {
+    if(event.key === 'Enter') {
+      const input = chatbotInput.value.trim();
+      if(input === '') return;
+      addMessage(input, 'user');
+      chatbotInput.value = '';
+      setTimeout(() => {
+        const reply = botResponse(input);
+        addMessage(reply, 'bot');
+      }, 600);
+    }
+  }
+</script>
+
+</body>
+</html>
